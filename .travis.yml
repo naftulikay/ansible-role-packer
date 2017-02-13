@@ -14,7 +14,7 @@ env:
   - PACKER_VERSION=0.12.2
 
 # Use the new container infrastructure
-sudo: false
+sudo: true
 
 # Install ansible
 addons:
