@@ -10,6 +10,7 @@ if ! which packer &>/dev/null ; then
   exit 1
 fi
 
-packer -version
-
-exit 1
+if [ "$(packer -version)" != "${PACKER_VERSION}" ]; then
+  echo "Packer $(packer -version) was installed; ${PACKER_VERSION} was expected." >&2
+  exit 1
+fi

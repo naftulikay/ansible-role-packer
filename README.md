@@ -46,6 +46,6 @@ License
 
 MIT
 
- [build-status]: -
- [img-build-status]: - 
+ [build-status]: https://travis-ci.org/naftulikay/ansible-role-packer
+ [img-build-status]: https://travis-ci.org/naftulikay/ansible-role-packer.svg?branch=master
  [packer]: https://www.packer.io

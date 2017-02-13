@@ -1,1 +1,33 @@
 ---
+ - name: install unzip
+   package: name=unzip state=present
+   become: true
+
+ - name: determine download url
+   set_fact:
+     packer_download_url: "https://releases.hashicorp.com/packer/{{ version }}/packer_{{ version }}_linux_amd64.zip"
+     packer_install_dir: "/usr/local/share/packer/{{ version }}"
+
+ - name: create install directory
+   file: path="{{ packer_install_dir }}" owner=root group=root mode=0755 state=directory
+   become: true
+
+ - name: download
+   unarchive:
+     copy: no
+     src: "{{ packer_download_url }}"
+     dest: "{{ packer_install_dir }}"
+     creates: "{{ packer_install_dir }}/packer"
+     mode: 0755
+     owner: root
+     group: root
+   become: true
+
+ - name: set symlink
+   file:
+     state: link
+     src: "/usr/local/share/packer/{{ version }}/packer"
+     dest: "/usr/local/bin/packer"
+     owner: root
+     group: root
+   become: true
